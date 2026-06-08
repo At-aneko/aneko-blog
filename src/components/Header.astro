@@ -52,28 +52,28 @@ const navLinks = [
 </header>
 
 <!-- Mobile Menu Overlay -->
-<div id="mobile-menu-overlay" class="mobile-menu-overlay md:hidden" aria-hidden="true">
-  <div class="mobile-menu-backdrop"></div>
-  <div id="mobile-menu" class="mobile-menu bg-primary border-t border-accent-gold/20">
-    <ul class="container mx-auto px-4 pt-8 pb-12 space-y-5">
-      {navLinks.map(({ href, label }, index) => (
-        <li class="mobile-menu-item" style={`--item-index: ${index}`}>
-          <a href={href} class="block text-sm font-body text-text hover:text-accent-gold transition-colors duration-300 uppercase tracking-wider">
-            {label}
-          </a>
+  <div id="mobile-menu-overlay" class="mobile-menu-overlay md:hidden" aria-hidden="true">
+    <div class="mobile-menu-backdrop"></div>
+    <div id="mobile-menu" class="mobile-menu bg-primary border-t border-accent-gold/20">
+      <ul class="container mx-auto px-6 pt-6 pb-8 space-y-5">
+        {navLinks.map(({ href, label }, index) => (
+          <li class="mobile-menu-item" style={`--item-index: ${index}`}>
+            <a href={href} class="block text-sm font-body text-text hover:text-accent-gold transition-colors duration-300 uppercase tracking-wider py-1">
+              {label}
+            </a>
+          </li>
+        ))}
+        <li class="mobile-menu-item" style={`--item-index: ${navLinks.length}`}>
+          <button data-search-trigger class="block w-full text-left text-sm font-body text-text hover:text-accent-gold transition-colors duration-300 uppercase tracking-wider py-1">
+            搜索
+          </button>
         </li>
-      ))}
-      <li class="mobile-menu-item" style={`--item-index: ${navLinks.length}`}>
-        <button data-search-trigger class="block w-full text-left text-sm font-body text-text hover:text-accent-gold transition-colors duration-300 uppercase tracking-wider">
-          搜索
-        </button>
-      </li>
-      <li class="mobile-menu-item" style={`--item-index: ${navLinks.length + 1}`}>
-        <a href="/blog" class="block btn text-sm text-center">阅读更多</a>
-      </li>
-    </ul>
+        <li class="mobile-menu-item" style={`--item-index: ${navLinks.length + 1}`}>
+          <a href="/blog" class="block btn text-sm text-center mt-2">阅读更多</a>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
 
 <style>
   .logo-link {

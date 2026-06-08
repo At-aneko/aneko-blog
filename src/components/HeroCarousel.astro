@@ -46,15 +46,15 @@ const slides: Slide[] = [
       class={`slide absolute inset-0 flex items-center transition-opacity duration-1000 ${index === 0 ? 'opacity-100' : 'opacity-0'}`}
       data-index={index}
     >
-      <div class="container mx-auto px-12 md:px-4">
+      <div class="container mx-auto px-4">
         <div class="max-w-4xl">
           <p class="text-sm font-body text-accent-gold uppercase tracking-[0.3em] mb-4 slide-subtitle">
             {slide.subtitle}
           </p>
-          <h1 class="text-4xl md:text-7xl lg:text-8xl font-heading font-bold text-text mb-6 leading-tight slide-title">
+          <h1 class="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-text mb-6 leading-tight slide-title">
             {slide.title}
           </h1>
-          <p class="text-base md:text-xl text-text-muted mb-8 max-w-2xl leading-relaxed slide-description">
+          <p class="text-lg md:text-xl text-text-muted mb-8 max-w-2xl leading-relaxed slide-description">
             {slide.description}
           </p>
           <a href={slide.link} class="btn inline-flex items-center gap-2 slide-cta">
@@ -79,13 +79,13 @@ const slides: Slide[] = [
   </div>
 
   <!-- Arrows -->
-  <button class="prev-btn absolute left-4 top-1/2 transform -translate-y-1/2 text-text-muted hover:text-accent-gold transition-colors p-2">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <button class="prev-btn absolute left-2 md:left-8 top-1/2 transform -translate-y-1/2 text-text-muted hover:text-accent-gold transition-colors p-3 z-10">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 19l-7-7 7-7" />
     </svg>
   </button>
-  <button class="next-btn absolute right-4 top-1/2 transform -translate-y-1/2 text-text-muted hover:text-accent-gold transition-colors p-2">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <button class="next-btn absolute right-2 md:right-8 top-1/2 transform -translate-y-1/2 text-text-muted hover:text-accent-gold transition-colors p-3 z-10">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 5l7 7-7 7" />
     </svg>
   </button>
