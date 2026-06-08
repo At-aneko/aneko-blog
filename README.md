@@ -138,7 +138,7 @@ fontFamily: {
 
 - `public/` - 存放图片、图标等静态资源
 - `public/favicon.ico` - 网站图标
-- `public/favicon.jpg` - 网站图标（备用）
+- `public/favicon.jpg` - 头像图标
 - `public/images/` - 图片资源
 - `public/animations.js` - 动画脚本
 
