@@ -78,6 +78,7 @@
     transform: translateY(-12px) scale(0.98);
     opacity: 0;
     transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+    pointer-events: none;
   }
   .search-overlay.active .search-dialog-container {
     transform: translateY(0) scale(1);
@@ -86,6 +87,7 @@
   .search-dialog-inner {
     overflow: hidden;
     border-radius: 0.5rem;
+    pointer-events: auto;
   }
 </style>
 
@@ -113,8 +115,11 @@
   function openSearch() {
     // Close mobile menu if open
     const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-      mobileMenu.classList.add('hidden');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    if (mobileMenu && mobileMenu.classList.contains('is-open')) {
+      mobileMenu.classList.remove('is-open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      mobileMenuBtn?.classList.remove('is-active');
     }
 
     const dialog = document.getElementById('search-dialog');
@@ -214,8 +219,11 @@
     });
   }
 
-  function initSearch() {
-    loadSearchIndex();
+  let docListenersBound = false;
+
+  function bindDocListeners() {
+    if (docListenersBound) return;
+    docListenersBound = true;
 
     // Cmd/Ctrl + K
     document.addEventListener('keydown', (e) => {
@@ -232,7 +240,9 @@
         closeSearch();
       }
     });
+  }
 
+  function bindElementListeners() {
     // Backdrop click
     document.getElementById('search-backdrop')?.addEventListener('click', closeSearch);
 
@@ -260,8 +270,14 @@
     bindSearchTriggers();
   }
 
+  function initSearch() {
+    loadSearchIndex();
+    bindDocListeners();
+    bindElementListeners();
+  }
+
   // Initialize on first load
   document.addEventListener('DOMContentLoaded', initSearch);
-  // Re-bind triggers after View Transition navigation
-  document.addEventListener('astro:page-load', bindSearchTriggers);
+  // Re-bind element listeners after View Transition navigation
+  document.addEventListener('astro:page-load', bindElementListeners);
 </script>

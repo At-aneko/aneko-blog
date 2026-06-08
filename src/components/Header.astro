@@ -51,21 +51,21 @@ const navLinks = [
   </nav>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="md:hidden hidden bg-primary border-t border-accent-gold/20">
+  <div id="mobile-menu" class="mobile-menu md:hidden bg-primary border-t border-accent-gold/20" aria-hidden="true">
     <ul class="container mx-auto px-4 py-4 space-y-4">
-      {navLinks.map(({ href, label }) => (
-        <li>
+      {navLinks.map(({ href, label }, index) => (
+        <li class="mobile-menu-item" style={`--item-index: ${index}`}>
           <a href={href} class="block text-sm font-body text-text hover:text-accent-gold transition-colors duration-300 uppercase tracking-wider">
             {label}
           </a>
         </li>
       ))}
-      <li>
+      <li class="mobile-menu-item" style={`--item-index: ${navLinks.length}`}>
         <button data-search-trigger class="block w-full text-left text-sm font-body text-text hover:text-accent-gold transition-colors duration-300 uppercase tracking-wider">
           搜索
         </button>
       </li>
-      <li>
+      <li class="mobile-menu-item" style={`--item-index: ${navLinks.length + 1}`}>
         <a href="/blog" class="block btn text-sm text-center">阅读更多</a>
       </li>
     </ul>
@@ -100,6 +100,44 @@ const navLinks = [
     color: rgba(192, 160, 98, 0.5);
     margin: 0 0.4rem;
   }
+
+  /* Mobile Menu Animation */
+  .mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.3s ease,
+                visibility 0.4s ease;
+    visibility: hidden;
+  }
+
+  .mobile-menu.is-open {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-menu-item {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: calc(var(--item-index) * 0.05s);
+  }
+
+  .mobile-menu.is-open .mobile-menu-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hamburger Animation */
+  #mobile-menu-btn svg {
+    transition: transform 0.3s ease;
+  }
+
+  #mobile-menu-btn.is-active svg {
+    transform: rotate(90deg);
+  }
 </style>
 
 <script>
@@ -111,7 +149,12 @@ const navLinks = [
       // Clone to remove old listeners
       const newBtn = menuBtn.cloneNode(true) as HTMLElement;
       menuBtn.parentNode?.replaceChild(newBtn, menuBtn);
-      newBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      
+      newBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('is-open');
+        newBtn.classList.toggle('is-active');
+        mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+      });
     }
   }
 
