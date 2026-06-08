@@ -2,4 +2,4 @@ name = "at-astroblog"
 compatibility_date = "2024-01-01"
 
 [assets]
-bucket = "./dist"
+directory = "./dist"
