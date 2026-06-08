@@ -154,9 +154,16 @@ const relatedArticles = allPosts
   // Code copy button
   function initCopyButtons() {
     document.querySelectorAll('.prose pre').forEach((block) => {
-      // Skip if already has a copy button
-      if (block.querySelector('.code-copy-btn')) return;
+      // Skip if already wrapped
+      if (block.parentElement?.classList.contains('code-block-wrapper')) return;
 
+      // Create wrapper
+      const wrapper = document.createElement('div');
+      wrapper.className = 'code-block-wrapper';
+      block.parentNode?.insertBefore(wrapper, block);
+      wrapper.appendChild(block);
+
+      // Create copy button
       const copyBtn = document.createElement('button');
       copyBtn.className = 'code-copy-btn';
       copyBtn.innerHTML = `
@@ -195,8 +202,7 @@ const relatedArticles = allPosts
         }
       });
 
-      (block as HTMLElement).style.position = 'relative';
-      block.appendChild(copyBtn);
+      wrapper.appendChild(copyBtn);
     });
   }
 
@@ -458,9 +464,19 @@ const relatedArticles = allPosts
   .gc-license .gc-info-icon { color: #3fb950; }
   .gc-language .gc-info-icon { color: #f78166; }
 
+  /* Code block wrapper */
+  .code-block-wrapper {
+    position: relative;
+    margin: 2rem 0;
+  }
+  .code-block-wrapper pre {
+    margin: 0;
+  }
+
   /* Copy button */
   .code-copy-btn {
-    position: absolute; top: 0.75rem; right: 0.75rem;
+    position: sticky; top: 0.75rem; right: 0.75rem;
+    float: right;
     display: flex; align-items: center; gap: 0.4rem;
     padding: 0.4rem 0.75rem;
     background: rgba(192, 160, 98, 0.1);
