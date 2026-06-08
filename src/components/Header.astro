@@ -103,10 +103,18 @@ const navLinks = [
 </style>
 
 <script>
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  function initMobileMenu() {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    if (menuBtn && mobileMenu) {
+      // Clone to remove old listeners
+      const newBtn = menuBtn.cloneNode(true) as HTMLElement;
+      menuBtn.parentNode?.replaceChild(newBtn, menuBtn);
+      newBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    }
   }
+
+  initMobileMenu();
+  document.addEventListener('astro:page-load', initMobileMenu);
 </script>
