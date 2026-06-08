@@ -58,9 +58,18 @@ www - VUE/
   --main_bg_color: url(/static/img/bz-light.jpg);
   --main_text_color: #ffffff;
   --gradient: linear-gradient(120deg, #bd34fe, #e0321b 30%, #41d1ff 60%);
+  --purple_text_color: #747bff;
+  --text_bg_color: rgba(180, 200, 230, 0.5);
   --item_bg_color: rgba(235, 240, 250, 0.25);
+  --item_hover_color: rgba(225, 235, 250, 0.4);
+  --item_left_title_color: #ffffff;
+  --item_left_text_color: #ffffff;
+  --footer_text_color: #ffffff;
+  --left_tag_item: rgba(235, 240, 250, 0.35);
+  --card_filter: 0px;
   --back_filter: 20px;
   --back_filter_color: rgba(0, 0, 0, 0.17);
+  --fill: #ffffff;
 }
 ```
 
@@ -71,11 +80,25 @@ www - VUE/
   --main_bg_color: url(/static/img/bz-dark.jpg);
   --main_text_color: #fff;
   --gradient: linear-gradient(120deg, rgb(133, 62, 255), #f76cc6 30%, rgb(255, 255, 255) 60%);
+  --purple_text_color: #747bff;
+  --text_bg_color: rgba(26, 4, 48, 0.5);
   --item_bg_color: rgba(19, 20, 24, 0.35);
+  --item_hover_color: rgba(19, 23, 27, 0.55);
+  --item_left_title_color: #ffffff;
+  --item_left_text_color: #ffffff;
+  --footer_text_color: #ffffff;
+  --left_tag_item: rgba(19, 20, 24, 0.35);
+  --card_filter: 0px;
   --back_filter: 20px;
   --back_filter_color: rgba(0, 0, 0, 0.55);
+  --fill: #ffffff;
 }
 ```
+
+### 壁纸设置
+
+- **Light 主题壁纸**：`public/static/img/bz-light.jpg`
+- **Dark 主题壁纸**：`public/static/img/bz-dark.jpg`
 
 ### 主题切换逻辑
 
@@ -99,6 +122,15 @@ function toggleTheme() {
 | 页面头部 | `src/components/PageHeader.vue` | 欢迎语、图标链接 |
 | 页面内容 | `src/components/PageContent.vue` | 项目站点数据 |
 | 页面底部 | `src/components/PageFooter.vue` | 版权信息 |
+| 主题切换 | `src/components/ThemeToggle.vue` | 切换按钮样式 |
+| 根组件 | `src/App.vue` | 主题切换逻辑 |
+
+### 工具函数
+
+| 文件 | 说明 |
+|------|------|
+| `src/utils/cookie.js` | Cookie 读写操作 |
+| `src/composables/usePopup.js` | 弹窗事件管理 |
 
 ## 快速开始
 
