@@ -1,12 +1,37 @@
+# Build output
 dist/
 .astro/
+
+# Dependencies
 node_modules/
+
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Environment variables
 .env
 .env.production
+.env.local
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# IDE
 .idea/
+.vscode/
 *.swp
+*.swo
+*~
+
+# Editor
+*.sublime-workspace
+*.sublime-project
+
+# Misc
+*.log
+*.tmp
+*.temp
